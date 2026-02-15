@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Distance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark">
+
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<div class="section fade-in">
+    <h1>Distance Means Nothing 💌</h1>
+
+    <img src="images/page3/photo1.jpg">
+    <p>No matter the miles between us…</p>
+
+    <img src="images/page3/photo2.jpg">
+    <p>My heart is always with you.</p>
+
+    <button onclick="location.href='page4.html'">Next →</button>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")){
+    setupMusic();
+}
+</script>
+</body>
+</html>

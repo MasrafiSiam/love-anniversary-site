@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>How It Began</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="pink">
+
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<div class="section fade-in">
+
+    <h1>How It All Started ❤️</h1>
+
+    <img src="images/page1/photo1.jpg">
+
+    <p>
+    Today on 15th February one year ago, we finally confessed our love for each other…
+    and this is how it began.
+    </p>
+
+    <button onclick="location.href='memory-cover.html'">Next → Memories</button>
+
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")){
+    setupMusic();
+}
+</script>
+</body>
+</html>

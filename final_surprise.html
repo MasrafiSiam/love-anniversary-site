@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Final Surprise</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif; /* standard font */
+    font-weight: normal; /* normal font weight */
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #fbc2eb, #a6c1ee);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+/* Main love text */
+#loveText {
+    font-size: 3rem; /* reasonable size */
+    font-weight: normal; /* normal weight */
+    animation: popIn 2s ease forwards, glow 3s ease-in-out infinite;
+    opacity: 0;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff758c, 0 0 30px #ff7eb3; /* softer glow */
+}
+
+/* Pop-in animation */
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Glowing effect */
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #ff758c, 0 0 30px #ff7eb3; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 40px #ff758c, 0 0 60px #ff7eb3; }
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp 6s linear infinite;
+    pointer-events: none;
+    user-select: none;
+    font-family: Arial, Helvetica, sans-serif; /* ensure hearts use normal font */
+}
+@keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<h1 id="loveText">I Love You endlessly, My Angel 💜</h1>
+
+<script>
+const body = document.body;
+const colors = ['#ff4e88','#ff758c','#ff7eb3','#fbc2eb','#a6c1ee'];
+
+// Create floating hearts
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+    heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+    heart.style.opacity = Math.random() * 0.8 + 0.2;
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+    body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+
+// Generate hearts continuously
+setInterval(createHeart, 250);
+</script>
+
+</body>
+</html>

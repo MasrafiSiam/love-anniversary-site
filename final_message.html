@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Final Message</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body {
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3,#fbc2eb,#a6c1ee);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:100vh;
+    padding:20px;
+    overflow-x:hidden;
+}
+
+#messageText {
+    font-size: 1.7rem;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.nav-button {
+    margin-top: 40px;
+    padding: 14px 32px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:600;
+    background: #ff4e88;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+.nav-button:hover {
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div id="messageText"></div>
+
+<div class="nav-button-container">
+    <button class="nav-button" id="nextBtn" style="display:none;" onclick="location.href='final_surprise.html'">Next →</button>
+</div>
+
+<script>
+// Typewriter effect
+const message = `My love ❤️
+
+Being with you has been the most beautiful thing in my life. You’ve filled my heart with a warmth and love I never knew existed, and even now, with this distance between us, that love hasn’t faded a single bit. I miss you more than words can say—your presence, your smile, your voice… everything about you.
+
+Please hold on for me, my angel. No matter how far apart we are, I promise I will come to you as soon as possible. Just a little more patience, and we’ll be together again, sharing every little moment we’ve dreamed of.
+
+If you ever feel lonely or miss me, call me, and remember that my heart is always with you. You are my safe place, my forever, my everything, and nothing—no distance, no time—can ever change that.
+
+I love you endlessly, my jaan 💜`;
+
+let i = 0;
+const speed = 25;
+const textEl = document.getElementById("messageText");
+const nextBtn = document.getElementById("nextBtn");
+
+function typeWriter() {
+    if(i < message.length){
+        let char = message.charAt(i);
+        textEl.innerHTML += (char === "\n" ? "<br><br>" : char);
+        i++;
+        setTimeout(typeWriter, speed);
+    } else {
+        nextBtn.style.display = "inline-block"; // show button after typing
+    }
+}
+
+// Start typewriter
+typeWriter();
+</script>
+</body>
+</html>

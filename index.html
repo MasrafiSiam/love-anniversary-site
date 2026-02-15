@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Our Love Story</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark">
+
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<div class="section">
+    <h1 id="intro"></h1>
+    <button onclick="startMusicAndGo('page1.html')">
+        Begin Our Story ❤️
+    </button>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+typeWriter(
+document.getElementById("intro"),
+"Every love story is beautiful... but ours is my favorite ❤️",
+40
+);
+</script>
+</body>
+</html>

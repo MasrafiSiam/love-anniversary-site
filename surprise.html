@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>I Love You</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark">
+
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<div class="section">
+    <h1 id="loveText"></h1>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")){
+    setupMusic();
+}
+
+typeWriter(
+document.getElementById("loveText"),
+"I loved you yesterday... I love you today... I will love you forever ❤️",
+40
+);
+
+setTimeout(()=>{
+document.body.innerHTML =
+"<div class='section'><h1 style='font-size:70px'>❤️ I LOVE YOU ❤️</h1></div>";
+}, 7000);
+</script>
+</body>
+</html>

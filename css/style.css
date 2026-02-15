@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:white;
+    overflow-x:hidden;
+    font-family:'Poppins', sans-serif;
+}
+
+/* romantic headings */
+h1{
+    font-family:'Great Vibes', cursive;
+    font-size:48px;
+    letter-spacing:1px;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:20px;
+    font-weight:500;
+    max-width:700px;
+    line-height:1.6;
+}
+
+/* layout */
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+}
+
+img{
+    max-width:85%;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(255,255,255,0.25);
+    margin:25px 0;
+}
+
+/* buttons */
+button{
+    padding:14px 32px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:600;
+    background:#ff4e88;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:15px;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* floating mute button */
+.mute-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(10px);
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+/* page backgrounds */
+.pink { background: linear-gradient(135deg,#ff4e88,#ff9ab5); }
+.purple { background: linear-gradient(135deg,#6a00ff,#b983ff); }
+.dark { background:#000; }
+.gold { background: linear-gradient(135deg,#d4af37,#fff1a8); }
+
+/* fade animation */
+.fade-in{
+    animation: fade 2s ease forwards;
+    opacity:0;
+}
+@keyframes fade{
+    to{opacity:1;}
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    color:#ff4e88;
+    animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(100vh); opacity:1;}
+    to{transform:translateY(-10vh); opacity:0;}
+}

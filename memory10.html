@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Memory 10</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    /* Gradient for Memory 10: deep purple → soft pink → light lavender */
+    background: linear-gradient(135deg, #7b4397, #dc2430, #fbc2eb, #f3e7f3);
+    color: #fff;
+}
+
+/* Full-screen quote overlay */
+#quoteScreen {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    display:flex; flex-direction: column; justify-content:center; align-items:center;
+    color: #fff; text-align:center; padding:20px; z-index:9999;
+}
+
+#memoryQuote {
+    font-size:4rem;
+    font-weight:bold;
+    line-height:1.2;
+    max-width:90%;
+    text-shadow:0 0 15px rgba(255,255,255,0.8),0 0 30px rgba(255,182,193,0.5);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+#scrollPrompt {
+    font-size:2rem;
+    margin-top:40px;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+/* Main content hidden initially */
+#mainContent {
+    opacity:0;
+    transition: opacity 1s ease-in-out;
+    padding-bottom:50px;
+}
+
+img {
+    display:block;
+    margin:40px auto;
+    max-width:90%;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(255,182,193,0.5);
+}
+
+/* Fade-in animation for quote */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95);}
+    to { opacity: 1; transform: scale(1);}
+}
+
+/* Bottom center navigation button */
+.nav-buttons {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.nav-buttons button {
+    background: linear-gradient(135deg, #7b4397, #dc2430);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,182,193,0.5);
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(255,182,193,0.7);
+}
+
+.nav-buttons button:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(255,182,193,0.5);
+}
+
+/* Mute button */
+.mute-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 182, 193, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255,182,193,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10000;
+}
+
+.mute-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(255,182,193,0.7);
+}
+
+.mute-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(255,182,193,0.5);
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<!-- Full-screen quote overlay -->
+<div id="quoteScreen">
+    <h1 id="memoryQuote"></h1>
+    <p id="scrollPrompt">Scroll down to see our final moments ❤️</p>
+</div>
+
+<!-- Main content -->
+<div id="mainContent">
+    <img src="images/memory10/photo1.jpg">
+    <img src="images/memory10/photo2.jpg">
+    <img src="images/memory10/photo3.jpg">
+    <img src="images/memory10/photo4.jpg">
+    <img src="images/memory10/photo5.jpg">
+    <img src="images/memory10/photo6.jpg">
+    <img src="images/memory10/photo7.jpg">
+    <img src="images/memory10/photo8.jpg">
+    <img src="images/memory10/photo9.jpg">
+    <img src="images/memory10/photo10.jpg">
+    <img src="images/memory10/photo11.jpg">
+    <img src="images/memory10/photo12.jpg">
+    <img src="images/memory10/photo13.jpg">
+    <img src="images/memory10/photo14.jpg">
+    <img src="images/memory10/photo15.jpg">
+    <img src="images/memory10/photo16.jpg">
+    <img src="images/memory10/photo17.jpg">
+    <img src="images/memory10/photo18.jpg">
+    <img src="images/memory10/photo19.jpg">
+    <img src="images/memory10/photo20.jpg">
+    <img src="images/memory10/photo21.jpg">
+    <img src="images/memory10/photo22.jpg">
+    <img src="images/memory10/photo23.jpg">
+    <img src="images/memory10/photo24.jpg">
+    <img src="images/memory10/photo25.jpg">
+
+    <!-- Only Next button now goes to final message page -->
+    <div class="nav-buttons">
+        <button onclick="location.href='final_message.html'">Next →</button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")) setupMusic();
+
+function showQuoteOverlay(quoteText){
+    const quoteScreen = document.getElementById("quoteScreen");
+    const quoteEl = document.getElementById("memoryQuote");
+    const scrollPrompt = document.getElementById("scrollPrompt");
+    const mainContent = document.getElementById("mainContent");
+    let i = 0;
+
+    function typeWriterQuote(){
+        if(i < quoteText.length){
+            quoteEl.innerHTML += quoteText.charAt(i);
+            i++;
+            setTimeout(typeWriterQuote, 80);
+        } else {
+            scrollPrompt.style.opacity = 1;
+            window.addEventListener('scroll', showMainContent);
+        }
+    }
+
+    function showMainContent(){
+        mainContent.style.opacity = 1;
+        quoteScreen.style.display = "none";
+        window.removeEventListener('scroll', showMainContent);
+    }
+
+    typeWriterQuote();
+}
+
+// Emotional quote for Memory 10
+showQuoteOverlay("“These last few days with you are the most precious moments of my life. Every smile, every laugh, every touch reminds me how deeply I love you and how lucky I am to have you.”");
+</script>
+</body>
+</html>

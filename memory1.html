@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Memory 1</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Full-page romantic gradient theme */
+body {
+    margin:0;
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff9a9e, #fbc2eb);
+}
+
+/* Full-screen quote overlay */
+#quoteScreen {
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    display:flex; flex-direction: column; justify-content:center; align-items:center;
+    color: #fff; text-align:center; padding:20px; z-index:9999;
+}
+
+#memoryQuote {
+    font-size:4rem;
+    font-weight:bold;
+    line-height:1.2;
+    max-width:90%;
+    text-shadow:0 0 15px rgba(255,255,255,0.7),0 0 30px rgba(255,182,193,0.5);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+#scrollPrompt {
+    font-size:2rem;
+    margin-top:40px;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+/* Main content hidden initially */
+#mainContent {
+    opacity:0;
+    transition: opacity 1s ease-in-out;
+    padding-bottom:50px;
+}
+
+img, video {
+    display:block;
+    margin:40px auto;
+    max-width:90%;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(255,182,193,0.5);
+}
+
+/* Fade-in animation for quote */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95);}
+    to { opacity: 1; transform: scale(1);}
+}
+
+/* Bottom center navigation button */
+.nav-buttons {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.nav-buttons button {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,182,193,0.5);
+}
+
+.nav-buttons button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(255,182,193,0.7);
+}
+
+.nav-buttons button:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(255,182,193,0.5);
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<!-- Full-screen quote overlay -->
+<div id="quoteScreen">
+    <h1 id="memoryQuote"></h1>
+    <p id="scrollPrompt">Scroll down to see our memories ❤️</p>
+</div>
+
+<!-- Main content -->
+<div id="mainContent">
+    <img src="images/memory1/photo1.jpg">
+    <img src="images/memory1/photo2.jpg">
+    <img src="images/memory1/photo3.jpg">
+    <img src="images/memory1/photo4.jpg">
+    <img src="images/memory1/photo5.jpg">
+    <img src="images/memory1/photo6.jpg">
+    <video src="images/memory1/video1.mp4" autoplay muted playsinline loop></video>
+    <img src="images/memory1/photo7.jpg">
+    <img src="images/memory1/photo8.jpg">
+    <img src="images/memory1/photo9.jpg">
+    <img src="images/memory1/photo10.jpg">
+    <img src="images/memory1/photo11.jpg">
+    <img src="images/memory1/photo12.jpg">
+    <img src="images/memory1/photo13.jpg">
+    <img src="images/memory1/photo14.jpg">
+
+    <!-- Only Next button, bottom center -->
+    <div class="nav-buttons">
+        <button onclick="location.href='memory2.html'">Next →</button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")) setupMusic();
+
+// Reusable function for quote overlay with typewriter
+function showQuoteOverlay(quoteText){
+    const quoteScreen = document.getElementById("quoteScreen");
+    const quoteEl = document.getElementById("memoryQuote");
+    const scrollPrompt = document.getElementById("scrollPrompt");
+    const mainContent = document.getElementById("mainContent");
+    let i = 0;
+
+    function typeWriterQuote(){
+        if(i < quoteText.length){
+            quoteEl.innerHTML += quoteText.charAt(i);
+            i++;
+            setTimeout(typeWriterQuote, 80);
+        } else {
+            scrollPrompt.style.opacity = 1;
+            window.addEventListener('scroll', showMainContent);
+        }
+    }
+
+    function showMainContent(){
+        mainContent.style.opacity = 1;
+        quoteScreen.style.display = "none"; // overlay removed but gradient continues
+        window.removeEventListener('scroll', showMainContent);
+    }
+
+    typeWriterQuote();
+}
+
+// Start the quote
+showQuoteOverlay("“Every moment with you is a beautiful memory I keep forever.”");
+</script>
+</body>
+</html>

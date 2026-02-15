@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Memories</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="purple">
+
+<audio id="bgMusic" loop>
+  <source src="music/love.mp3" type="audio/mpeg">
+</audio>
+
+<button class="mute-btn" onclick="toggleMute()">🔊</button>
+
+<div class="section fade-in">
+    <h1 id="memoryTitle">Memories 💞</h1>
+    <p id="memoryQuote"></p>
+    <button onclick="location.href='memory1.html'">Begin →</button>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+if(sessionStorage.getItem("musicStarted")){
+    setupMusic();
+}
+
+typeWriter(
+  document.getElementById("memoryQuote"),
+  "“We didn’t realize we were making memories, we just knew we were having fun together.”",
+  35
+);
+</script>
+</body>
+</html>
